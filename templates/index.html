@@ -31,12 +31,12 @@ function validateForm() {
     let name = document.getElementById("name").value;
     let email = document.getElementById("email").value;
     let course = document.getElementById("course").value;
-    let phone = document.getElementById("phone").value;
     let address = document.getElementById("address").value;
+    let phone = document.getElementById("phone").value;
     
 
 
-    if (name == "" || email == "" || course == "" || phone == "" || address == "" ) {
+    if (name == "" || email == "" || course == "" || address == "" || phone == "" ) {
         document.getElementById("error").innerText = "All fields are required!";
         return false;
     }
