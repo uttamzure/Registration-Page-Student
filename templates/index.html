@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Registration</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>Student Registration Form</h2>
+
+    <form action="/add" method="POST" onsubmit="return validateForm()">
+        <input type="text" id="name" name="name" placeholder="Enter Name">
+        <input type="email" id="email" name="email" placeholder="Enter Email">
+        <input type="text" id="phone" name="phone" placeholder="Enter Phone">
+        <input type="text" id="course" name="course" placeholder="Enter Course">
+        <input type="text" id="address" name="address" placeholder="Enter Address">
+        <input type="text" id="contact" name="contact" placeholder="Enter Contact">
+
+
+        <button type="submit">Register</button>
+    </form>
+
+    <p id="error" style="color:red;"></p>
+
+    <a href="/students">View Students</a>
+</div>
+
+<script>
+function validateForm() {
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let course = document.getElementById("course").value;
+    let phone = document.getElementById("phone").value;
+    let address = document.getElementById("address").value;
+    let contact = document.getElementById("contact").value;
+
+
+    if (name == "" || email == "" || course == "" || phone == "" || address == "" || contact == "") {
+        document.getElementById("error").innerText = "All fields are required!";
+        return false;
+    }
+
+    return true;
+}
+</script>
+
+</body>
+</html>
