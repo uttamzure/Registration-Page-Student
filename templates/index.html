@@ -33,10 +33,10 @@ function validateForm() {
     let course = document.getElementById("course").value;
     let phone = document.getElementById("phone").value;
     let address = document.getElementById("address").value;
-    let contact = document.getElementById("contact").value;
+    
 
 
-    if (name == "" || email == "" || course == "" || phone == "" || address == "" || contact == "") {
+    if (name == "" || email == "" || course == "" || phone == "" || address == "" ) {
         document.getElementById("error").innerText = "All fields are required!";
         return false;
     }
