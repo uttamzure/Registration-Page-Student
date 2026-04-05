@@ -18,19 +18,19 @@ def home():
 def add_student():
     name = request.form['name']
     email = request.form['email']
-    phone = request.form['phone']
     course = request.form['course']
     address = request.form['address']
+      phone = request.form['phone']
     
 
     conn = mysql.connector.connect(**db_config)
     cursor = conn.cursor()
 
     query = '''
-    INSERT INTO students (name, email, phone, course, address)
+    INSERT INTO students (name, email, course, address, phone)
     VALUES (%s, %s, %s, %s, %s)
     '''
-    values = (name, email, phone, course, address)
+    values = (name, email, course, address, phone)
 
     cursor.execute(query, values)
     conn.commit()
