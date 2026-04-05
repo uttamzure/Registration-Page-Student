@@ -3,9 +3,9 @@ import mysql.connector
 
 app = Flask(__name__)
 
-# Database configuration
+# Database config
 db_config = {
-    'host': 'localhost',   # ✅ FIXED
+    'host': 'localhost',
     'user': 'uttam',
     'password': '1234',
     'database': 'studentsdb'
@@ -19,16 +19,15 @@ def register():
         phone = request.form['phone']
         course = request.form['course']
         address = request.form['address']
-        contact = request.form.get('contact')  # ✅ SAFE
 
         conn = mysql.connector.connect(**db_config)
         cursor = conn.cursor()
 
         query = '''
-        INSERT INTO students (name, email, phone, course, address, contact)
-        VALUES (%s, %s, %s, %s, %s, %s)
+        INSERT INTO students (name, email, phone, course, address)
+        VALUES (%s, %s, %s, %s, %s)
         '''
-        values = (name, email, phone, course, address, contact)
+        values = (name, email, phone, course, address)
 
         cursor.execute(query, values)
         conn.commit()
@@ -36,12 +35,24 @@ def register():
         cursor.close()
         conn.close()
 
-        return 'Student Registered Successfully!'
+        return "Student Registered Successfully!"
+
     return render_template('index.html')
+
 
 @app.route('/students')
 def students():
-    return render_template('students.html', data=students_data)
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM students")
+    data = cursor.fetchall()
+
+    cursor.close()
+    conn.close()
+
+    return render_template('students.html', students=data)
+
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
