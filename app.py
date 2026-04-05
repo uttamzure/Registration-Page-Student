@@ -21,7 +21,7 @@ def add_student():
     phone = request.form['phone']
     course = request.form['course']
     address = request.form['address']
-    contact = request.form['contact']
+    
 
     conn = mysql.connector.connect(**db_config)
     cursor = conn.cursor()
